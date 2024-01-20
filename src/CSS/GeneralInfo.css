@@ -1,0 +1,14 @@
+.general-info {
+    background-color: white;
+    margin: 20px;
+    width: 100vw;
+    padding: 15px;
+    border-color: transparent;
+    border-radius: 15px;
+}
+
+.inputBox {
+    background-color: #F3F4F6;
+    border-style: none;
+    border-radius: 10px;
+}
