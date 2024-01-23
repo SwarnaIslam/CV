@@ -1,0 +1,25 @@
+.form {
+    overflow-wrap: break-word;
+    margin-top: 10px;
+    width: 100vw;
+    padding: 15px;
+    /* height: 100vh; */
+    background: rgba(58, 58, 58, 0.4333);
+    border-radius: 0px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border: none;
+    color: white;
+  }
+
+.inputBox {
+    background-color: #F3F4F6;
+    border-style: none;
+    border-radius: 0px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.form-group{
+  margin-top: 10px;
+}

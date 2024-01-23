@@ -1,5 +1,29 @@
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
 body {
-  background-color: #F0EEEB;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background-image: url('./assets/bg1.jpg');
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
 }
 
 .extra-bold {

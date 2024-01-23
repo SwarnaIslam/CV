@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import GeneralInfo from "./component/generalInfo";
+import Education from "./component/Education";
 
 function App() {
   const [expand, setExpand] = useState("");
@@ -16,10 +17,10 @@ function App() {
         <div className="row">
           <div className="col-sm-5">
             <div className="row">
-              <GeneralInfo
-                collapse={expand === "general-info"}
-                onExpand={onExpand}
-              ></GeneralInfo>
+              <GeneralInfo></GeneralInfo>
+            </div>
+            <div className="row">
+              <Education></Education>
             </div>
           </div>
           <div className="col-sm 7"></div>
