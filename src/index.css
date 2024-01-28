@@ -2,14 +2,19 @@ html {
   overflow: scroll;
   overflow-x: hidden;
 }
+
 ::-webkit-scrollbar {
-  width: 0;  /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
 }
+
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
   background: #FF0000;
 }
+
 body {
   width: 100%;
   height: auto;
@@ -23,14 +28,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
 }
 
 .extra-bold {
   font-weight: 800;
-}
-
-.font-label {
-  font-weight: 700;
-  font-size: 14px;
 }

@@ -6,18 +6,24 @@ import GeneralInfo from "./component/generalInfo";
 import Education from "./component/Education";
 
 function App() {
-  const [expand, setExpand] = useState("");
-  function onExpand(panel) {
-    setExpand(panel);
+  const [general, setGeneral] = useState({name:"", email:"", phone:""});
+  function onSave(newPerson) {
+    console.log(newPerson);
+    setGeneral({
+      ...general,
+      name: newPerson.name,
+      email: newPerson.email,
+      phone: newPerson.phone,
+    });
   }
-
+  console.log(general);
   return (
     <>
       <div className="container">
         <div className="row">
           <div className="col-sm-5">
             <div className="row">
-              <GeneralInfo></GeneralInfo>
+              <GeneralInfo person={general} onSave={onSave}></GeneralInfo>
             </div>
             <div className="row">
               <Education></Education>

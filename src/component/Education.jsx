@@ -21,7 +21,7 @@ const Education = () => {
       </svg>
       <form {...getCollapseProps()}>
         <div className="form-group">
-          <label for="institute" className="font-label">
+          <label htmlFor="institute" className="font-label">
             Institute:
           </label>
           <input
@@ -32,7 +32,7 @@ const Education = () => {
           ></input>
         </div>
         <div className="form-group">
-          <label for="degree" className="font-label">
+          <label htmlFor="degree" className="font-label">
             Degree:
           </label>
           <input
@@ -45,7 +45,7 @@ const Education = () => {
         <div className="form-group">
           <div className="row">
             <div className="col-sm-6">
-              <label for="start-date" className="font-label">
+              <label htmlFor="start-date" className="font-label">
                 Start date:
               </label>
               <input
@@ -55,7 +55,7 @@ const Education = () => {
               ></input>
             </div>
             <div className="col-sm-6">
-              <label for="end-date" className="font-label">
+              <label htmlFor="end-date" className="font-label">
                 End date:
               </label>
               <input
