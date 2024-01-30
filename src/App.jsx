@@ -6,7 +6,7 @@ import GeneralInfo from "./component/generalInfo";
 import Education from "./component/Education";
 
 function App() {
-  const [general, setGeneral] = useState({name:"", email:"", phone:""});
+  const [general, setGeneral] = useState({ name: "", email: "", phone: "" });
   function onSave(newPerson) {
     console.log(newPerson);
     setGeneral({
@@ -16,7 +16,6 @@ function App() {
       phone: newPerson.phone,
     });
   }
-  console.log(general);
   return (
     <>
       <div className="container">

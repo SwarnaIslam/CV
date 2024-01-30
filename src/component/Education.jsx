@@ -66,13 +66,13 @@ const Education = () => {
             </div>
           </div>
         </div>
-        <hr className="hr hr-blurry" />
-        <div className="form-group text-center">
+      </form>
+      <hr className="hr hr-blurry" />
+      <div className="text-center">
           <button type="button" className="btn btn-outline-info rounded-0">
             Add Institute
           </button>
         </div>
-      </form>
     </div>
   );
 };

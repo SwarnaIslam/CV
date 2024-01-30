@@ -9,6 +9,8 @@ const GeneralInfo = ({ person, onSave }) => {
     phone: person.phone,
   });
   const [active, setActive] = useState(true);
+  const oldVal = person;
+  
   return (
     <div className="form">
       <svg
@@ -126,7 +128,7 @@ const GeneralInfo = ({ person, onSave }) => {
             className={`btn btn-outline-info rounded-0 ${
               active ? "active" : ""
             }`}
-            {...getToggleProps()}
+            
           >
             Save
           </button>
@@ -136,16 +138,12 @@ const GeneralInfo = ({ person, onSave }) => {
             className="btn btn-outline-info rounded-0"
             onClick={(e) => {
               e.preventDefault();
-              console.log("Canceled");
-              setNewPerson({
-                name: person.name,
-                email: person.email,
-                phone: person.phone,
-              });
+              // console.log(person);
+              setNewPerson(person);
+              onSave(person);
             }}
             onMouseEnter={() => setActive(false)}
             onMouseLeave={() => setActive(true)}
-            {...getToggleProps()}
           >
             Cancel
           </button>
