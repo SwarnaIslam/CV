@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import "../CSS/form.css";
 import { useCollapse } from "react-collapsed";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 const GeneralInfo = ({ person, onSave }) => {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
   const [newPerson, setNewPerson] = useState({
     name: person.name,
     email: person.email,
     phone: person.phone,
+    links: person.links,
   });
   const [active, setActive] = useState(true);
   const oldVal = person;
-  
+
   return (
     <div className="form">
       <svg
@@ -73,7 +75,6 @@ const GeneralInfo = ({ person, onSave }) => {
         {...getCollapseProps()}
         onSubmit={(e) => {
           e.preventDefault();
-          console.log("submitted");
           onSave(newPerson);
         }}
       >
@@ -122,13 +123,13 @@ const GeneralInfo = ({ person, onSave }) => {
             }}
           ></input>
         </div>
+       
         <div className="form-group text-center">
           <button
             type="submit"
             className={`btn btn-outline-info rounded-0 ${
               active ? "active" : ""
             }`}
-            
           >
             Save
           </button>
@@ -138,9 +139,7 @@ const GeneralInfo = ({ person, onSave }) => {
             className="btn btn-outline-info rounded-0"
             onClick={(e) => {
               e.preventDefault();
-              // console.log(person);
               setNewPerson(person);
-              onSave(person);
             }}
             onMouseEnter={() => setActive(false)}
             onMouseLeave={() => setActive(true)}
