@@ -56,20 +56,17 @@ const Link = ({ links, onLinkSave }) => {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              const activeLinks = newLinks.filter(
-                (link) => link.text != "" || link.link != ""
-              );
-              onLinkSave(activeLinks);
+              onLinkSave(newLinks);
             }}
           >
             {newLinks.map((link) => {
               return (
                 <div className="form-group" key={link.id}>
-                  <div class="row">
+                  <div className="row">
                     <div className="col-7">
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Link"
                         value={link["link"]}
                         onChange={(e) => {
@@ -87,7 +84,7 @@ const Link = ({ links, onLinkSave }) => {
                     <div className="col-3">
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         value={link["text"]}
                         placeholder="Text(Optional)"
                         onChange={(e) => {
@@ -119,29 +116,31 @@ const Link = ({ links, onLinkSave }) => {
                 </div>
               );
             })}
-            <div className="form-group text-center">
-              <button
-                type="submit"
-                className={`btn btn-outline-info rounded-0 ${
-                  active ? "active" : ""
-                }`}
-              >
-                Save
-              </button>
-              {"  "}
-              <button
-                type="button"
-                className="btn btn-outline-info rounded-0"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setNewLinks(links);
-                }}
-                onMouseEnter={() => setActive(false)}
-                onMouseLeave={() => setActive(true)}
-              >
-                Cancel
-              </button>
-            </div>
+            {(links.length > 0 || newLinks.length > 0) && (
+              <div className="form-group text-center">
+                <button
+                  type="submit"
+                  className={`btn btn-outline-info rounded-0 ${
+                    active ? "active" : ""
+                  }`}
+                >
+                  Save
+                </button>
+                {"  "}
+                <button
+                  type="button"
+                  className="btn btn-outline-info rounded-0"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setNewLinks(links);
+                  }}
+                  onMouseEnter={() => setActive(false)}
+                  onMouseLeave={() => setActive(true)}
+                >
+                  Cancel
+                </button>
+              </div>
+            )}
           </form>
         </Expand>
       </div>

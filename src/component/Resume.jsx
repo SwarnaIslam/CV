@@ -9,15 +9,23 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fab, faLink);
-const Resume = ({ generalInfo, links, educations }) => {
+const Resume = ({ generalInfo, links, educations, skills }) => {
   return (
     <div className="resume">
-      <div className="container">
-        <div className="row text-center text-white bg-dark">
-          <h1>{generalInfo.name || "Your Name"}</h1>
-          <div className="d-flex justify-content-center thumbnail-font flex-col">
+      <div
+        className="container"
+        style={{ padding: "40px", wordWrap: "break-word" }}
+      >
+        <div
+          className="row text-center"
+          style={{ height: "auto", wordWrap: "break-word" }}
+        >
+          <h2 className="m-0">
+            <b>{generalInfo.name || "Your Name"}</b>
+          </h2>
+          <div className="d-flex justify-content-center general-info flex-col flex-wrap  m-0">
             {generalInfo.phone && (
-              <p className="me-4">
+              <p className="me-4 ">
                 <FontAwesomeIcon icon={faMobile} /> {generalInfo.phone}
               </p>
             )}
@@ -33,7 +41,14 @@ const Resume = ({ generalInfo, links, educations }) => {
               </p>
             )}
             {links.map((link) => {
-              const domain = new URL(link["link"]).hostname;
+              let newLink = link["link"];
+              if (
+                !newLink.startsWith("http://") &&
+                !newLink.startsWith("https://")
+              ) {
+                newLink = "http://" + newLink;
+              }
+              const domain = new URL(newLink).hostname;
               const subdomain = domain.split(".")[0];
               const icon =
                 subdomain in library.definitions.fab
@@ -42,7 +57,7 @@ const Resume = ({ generalInfo, links, educations }) => {
               return (
                 <p className="me-4" key={link["link"]}>
                   <FontAwesomeIcon icon={icon} />{" "}
-                  <a href={link["link"]} style={{ textDecoration: "none" }}>
+                  <a href={newLink} style={{ textDecoration: "none" }}>
                     {link["text"] || link["link"]}
                   </a>
                 </p>
@@ -50,6 +65,43 @@ const Resume = ({ generalInfo, links, educations }) => {
             })}
           </div>
         </div>
+        <div className="row">
+          <h6 className="m-0">Education</h6>
+          <hr style={{ width: "95%", margin: "auto" }} />
+
+          <ul style={{ marginLeft: "40px", marginRight: "40px" }}>
+            {educations.map((education) => {
+              return (
+                <li key={education.id}>
+                  <p className="list-header">{education.name}</p>
+                  <p className="list-explain">
+                    {education.degree}
+                    {(education.start != "" || education.end != "") && " | "}
+                    {education.start != "" &&
+                      education.end != "" &&
+                      `${education.start} - ${education.end}`}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        {skills.length > 0 && (
+          <div className="row">
+            <h6 className="m-0">Skills</h6>
+            <hr style={{ width: "95%", margin: "auto" }} />
+            <ul style={{ marginLeft: "40px" }}>
+              {skills.map((skill) => {
+                return (
+                  <li key={skill.id}>
+                    <p className="list-header">{skill.skill}</p>
+                    <p className="list-explain">{skill.info}</p>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );

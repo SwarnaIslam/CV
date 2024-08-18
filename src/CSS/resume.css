@@ -1,6 +1,21 @@
 .resume {
     background-color: white;
     width: 595px;
-    height: 842px;
+    min-height: 842px;
+    height: auto;
     margin: 15px auto;
+}
+
+.list-explain {
+    margin: 0px;
+    margin-right: 80px;
+    font-size: 12px;
+    font-weight: 450;
+}
+
+.list-header {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0px;
+    margin-right: 80px
 }

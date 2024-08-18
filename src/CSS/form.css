@@ -24,14 +24,28 @@
 .form-group {
   margin-top: 10px;
 }
+
 .font-label {
   font-weight: 700;
   font-size: 14px;
 }
-.thumbnail-font{
+
+.thumbnail-font {
   color: rgba(255, 255, 255, 0.484);
   font-weight: 100;
   font-size: 14px;
 }
 
+.general-info {
+  color: black;
+  font-weight: 400;
+  font-size: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
+.ellipse-text {
+  white-space: nowrap;
+  width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

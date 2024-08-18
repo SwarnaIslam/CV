@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Expand from "react-expand-animated";
 import "./App.css";
 import GeneralInfo from "./component/generalInfo";
@@ -8,10 +8,8 @@ import Education from "./component/Education";
 import EducationForm from "./component/EducationForm";
 import Resume from "./component/Resume";
 import Link from "./component/Link";
+import Skill from "./component/Skill";
 
-// library.add(fab);
-
-let nextId = 1;
 function App() {
   const [general, setGeneral] = useState({
     name: "",
@@ -22,7 +20,12 @@ function App() {
   const [links, setLinks] = useState([
     { id: 0, link: "https://github.com/SwarnaIslam", text: "github" },
   ]);
-  const [educations, setEducations] = useState([]);
+  const [educations, setEducations] = useState([
+    { id: 0, name: "IIT", degree: "BSc", start: "2020-01", end: "2025-01" },
+  ]);
+  const [skills, setSkills] = useState([
+    { id: 0, skill: "Programming language", info: "C++, C#, Java" },
+  ]);
   const [state, setState] = useState(false);
   const toggle = () => {
     setState(!state);
@@ -39,7 +42,7 @@ function App() {
     setLinks([...newLinks]);
   }
   function onEducationAdd(education) {
-    setEducations([...educations, { ...education, id: nextId++ }]);
+    setEducations([...educations, { ...education, id: Date.now() }]);
   }
   function onEducationSave(newEd) {
     let newEducations = educations.map((education) => {
@@ -49,6 +52,18 @@ function App() {
       return education;
     });
     setEducations(newEducations);
+  }
+  function onSkillEdit(editedSkill) {
+    let newSkills = skills.map((skill) => {
+      if (skill.id === editedSkill.id) {
+        return editedSkill;
+      }
+      return skill;
+    });
+    setSkills(newSkills);
+  }
+  function onSkillAdd(addedSkill) {
+    setSkills([...skills, { ...addedSkill, id: Date.now() }]);
   }
   return (
     <>
@@ -69,6 +84,17 @@ function App() {
                 <h6 className="extra-bold" style={{ display: "inline" }}>
                   Education
                 </h6>
+                {!state && (
+                  <FontAwesomeIcon
+                    icon={faSquarePlus}
+                    style={{
+                      color: "#51B9CA",
+                      marginLeft: "6px",
+                      cursor: "pointer",
+                    }}
+                    onClick={toggle}
+                  />
+                )}
                 {educations.map((education) => {
                   return (
                     <Education
@@ -83,17 +109,15 @@ function App() {
                   <Expand open={state}>
                     <EducationForm onSave={onEducationAdd} toggle={toggle} />
                   </Expand>
-                  {!state && (
-                    <button
-                      onClick={toggle}
-                      type="button"
-                      className="btn btn-outline-info rounded-0"
-                    >
-                      Add Institute
-                    </button>
-                  )}
                 </div>
               </div>
+            </div>
+            <div className="row">
+              <Skill
+                skills={skills}
+                onSkillAdd={onSkillAdd}
+                onSkillEdit={onSkillEdit}
+              />
             </div>
           </div>
           <div className="col-sm-7">
@@ -101,6 +125,7 @@ function App() {
               generalInfo={general}
               links={links}
               educations={educations}
+              skills={skills}
             />
           </div>
         </div>

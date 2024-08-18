@@ -11,6 +11,7 @@ const Education = ({ education, onEducationSave }) => {
   return (
     <>
       <div>
+        <hr className="hr hr-blurry" />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -32,15 +33,14 @@ const Education = ({ education, onEducationSave }) => {
       </div>
 
       {!state && (
-        <div style={{ cursor: "pointer" }}>
-          <p className="thumbnail-font">{education.name || "Your name"}</p>
-          <p className="thumbnail-font">{education.degree || "Your name"}</p>
+        <div>
+          <p className="thumbnail-font ellipse-text m-0">{education.name}</p>
+          <p className="thumbnail-font ellipse-text -0">{education.degree}</p>
         </div>
       )}
       <Expand open={state}>
-        <EducationForm education={education} onSave={onEducationSave}/>
+        <EducationForm education={education} onSave={onEducationSave} />
       </Expand>
-      <hr className="hr hr-blurry" />
     </>
   );
 };

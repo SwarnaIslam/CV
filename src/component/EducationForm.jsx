@@ -9,6 +9,7 @@ const EducationForm = ({
   const [active, setActive] = useState(true);
   return (
     <>
+      <hr className="hr hr-blurry" />
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -95,8 +96,8 @@ const EducationForm = ({
             className="btn btn-outline-info rounded-0"
             onClick={(e) => {
               e.preventDefault();
+              setNewEd({ ...education });
               if (toggle) {
-                setNewEd({ ...education });
                 toggle();
               }
             }}
