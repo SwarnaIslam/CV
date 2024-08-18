@@ -1,8 +1,50 @@
 import React, { useState } from "react";
 import "../CSS/form.css";
 import EducationForm from "./EducationForm";
+import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Expand from "react-expand-animated";
-const Education = ({ education, onEducationSave }) => {
+const Education = ({ educations, onEducationEdit, onEducationAdd }) => {
+  const [addable, setAddable] = useState(false);
+  const toggle = () => {
+    setAddable(!addable);
+  };
+  return (
+    <>
+      <div className="form">
+        <h6 className="extra-bold" style={{ display: "inline" }}>
+          Education
+        </h6>
+        {!addable && (
+          <FontAwesomeIcon
+            icon={faSquarePlus}
+            style={{
+              color: "#51B9CA",
+              marginLeft: "6px",
+              cursor: "pointer",
+            }}
+            onClick={toggle}
+          />
+        )}
+        {educations.map((education) => {
+          return (
+            <SingleEducation
+              key={education.id}
+              education={education}
+              onEducationEdit={onEducationEdit}
+            ></SingleEducation>
+          );
+        })}
+
+        <Expand open={addable}>
+          <EducationForm onSave={onEducationAdd} toggle={toggle} />
+        </Expand>
+      </div>
+    </>
+  );
+};
+
+export const SingleEducation = ({ education, onEducationEdit }) => {
   const [state, setState] = useState(false);
 
   const toggle = () => {
@@ -39,7 +81,7 @@ const Education = ({ education, onEducationSave }) => {
         </div>
       )}
       <Expand open={state}>
-        <EducationForm education={education} onSave={onEducationSave} />
+        <EducationForm education={education} onSave={onEducationEdit} />
       </Expand>
     </>
   );

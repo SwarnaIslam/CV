@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fab, faLink);
-const Resume = ({ generalInfo, links, educations, skills }) => {
+const Resume = ({ generalInfo, links, educations, skills, references }) => {
   return (
     <div className="resume">
       <div
@@ -25,12 +25,12 @@ const Resume = ({ generalInfo, links, educations, skills }) => {
           </h2>
           <div className="d-flex justify-content-center general-info flex-col flex-wrap  m-0">
             {generalInfo.phone && (
-              <p className="me-4 ">
+              <p className="me-2 ">
                 <FontAwesomeIcon icon={faMobile} /> {generalInfo.phone}
               </p>
             )}
             {generalInfo.email && (
-              <p className="me-4">
+              <p className="me-2">
                 <FontAwesomeIcon icon={faEnvelope} />{" "}
                 <a
                   href={"mailto:" + generalInfo.email}
@@ -55,7 +55,7 @@ const Resume = ({ generalInfo, links, educations, skills }) => {
                   ? ["fab", subdomain]
                   : ["fas", "link"];
               return (
-                <p className="me-4" key={link["link"]}>
+                <p className="me-2" key={link["link"]}>
                   <FontAwesomeIcon icon={icon} />{" "}
                   <a href={newLink} style={{ textDecoration: "none" }}>
                     {link["text"] || link["link"]}
@@ -65,37 +65,65 @@ const Resume = ({ generalInfo, links, educations, skills }) => {
             })}
           </div>
         </div>
-        <div className="row">
-          <h6 className="m-0">Education</h6>
-          <hr style={{ width: "95%", margin: "auto" }} />
+        {educations.length > 0 && (
+          <div className="row">
+            <h6 className="m-0">Education</h6>
+            <hr style={{ width: "95%", margin: "auto" }} />
 
-          <ul style={{ marginLeft: "40px", marginRight: "40px" }}>
-            {educations.map((education) => {
-              return (
-                <li key={education.id}>
-                  <p className="list-header">{education.name}</p>
-                  <p className="list-explain">
-                    {education.degree}
-                    {(education.start != "" || education.end != "") && " | "}
-                    {education.start != "" &&
-                      education.end != "" &&
-                      `${education.start} - ${education.end}`}
-                  </p>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+            <ul
+              style={{
+                marginLeft: "10px",
+                listStyle: "none",
+              }}
+            >
+              {educations.map((education) => {
+                return (
+                  <li key={education.id}>
+                    <p className="list-header">{education.name}</p>
+                    <p className="list-explain">
+                      {education.degree}
+                      {(education.start != "" || education.end != "") && " | "}
+                      {education.start != "" &&
+                        education.end != "" &&
+                        `${education.start} - ${education.end}`}
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
         {skills.length > 0 && (
           <div className="row">
             <h6 className="m-0">Skills</h6>
             <hr style={{ width: "95%", margin: "auto" }} />
-            <ul style={{ marginLeft: "40px" }}>
+            <ul style={{ marginLeft: "10px", listStyle: "none" }}>
               {skills.map((skill) => {
                 return (
                   <li key={skill.id}>
                     <p className="list-header">{skill.skill}</p>
                     <p className="list-explain">{skill.info}</p>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+        {references.length > 0 && (
+          <div className="row">
+            <h6 className="m-0">Reference</h6>
+            <hr style={{ width: "95%", margin: "auto" }} />
+            <ul style={{ marginLeft: "10px", listStyle: "none" }}>
+              {references.map((reference) => {
+                return (
+                  <li key={reference.id}>
+                    <span className="list-header" style={{ margin: "0" }}>
+                      {reference.name}
+                    </span>
+                    {", "}
+                    <span className="list-explain">{reference.title}</span>
+                    <p className="list-explain">{reference.phone}</p>
+                    <p className="list-explain">{reference.email}</p>
                   </li>
                 );
               })}

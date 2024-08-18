@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Expand from "react-expand-animated";
+
 import "./App.css";
 import GeneralInfo from "./component/generalInfo";
 import Education from "./component/Education";
-import EducationForm from "./component/EducationForm";
 import Resume from "./component/Resume";
 import Link from "./component/Link";
 import Skill from "./component/Skill";
+import Reference from "./component/Reference";
 
 function App() {
   const [general, setGeneral] = useState({
@@ -17,19 +15,11 @@ function App() {
     phone: "",
   });
 
-  const [links, setLinks] = useState([
-    { id: 0, link: "https://github.com/SwarnaIslam", text: "github" },
-  ]);
-  const [educations, setEducations] = useState([
-    { id: 0, name: "IIT", degree: "BSc", start: "2020-01", end: "2025-01" },
-  ]);
-  const [skills, setSkills] = useState([
-    { id: 0, skill: "Programming language", info: "C++, C#, Java" },
-  ]);
-  const [state, setState] = useState(false);
-  const toggle = () => {
-    setState(!state);
-  };
+  const [links, setLinks] = useState([]);
+  const [educations, setEducations] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [references, setReferences] = useState([]);
+
   function onGeneralSave(newPerson) {
     setGeneral({
       ...general,
@@ -44,7 +34,7 @@ function App() {
   function onEducationAdd(education) {
     setEducations([...educations, { ...education, id: Date.now() }]);
   }
-  function onEducationSave(newEd) {
+  function onEducationEdit(newEd) {
     let newEducations = educations.map((education) => {
       if (education.id === newEd.id) {
         return newEd;
@@ -65,6 +55,18 @@ function App() {
   function onSkillAdd(addedSkill) {
     setSkills([...skills, { ...addedSkill, id: Date.now() }]);
   }
+  function onReferenceAdd(ref) {
+    setReferences([...references, { ...ref, id: Date.now() }]);
+  }
+  function onReferenceEdit(newRef) {
+    let newReferences = references.map((ref) => {
+      if (ref.id === newRef.id) {
+        return newRef;
+      }
+      return ref;
+    });
+    setReferences(newReferences);
+  }
   return (
     <>
       <div className="container">
@@ -80,43 +82,24 @@ function App() {
               <Link links={links} onLinkSave={onLinkSave}></Link>
             </div>
             <div className="row">
-              <div className="form">
-                <h6 className="extra-bold" style={{ display: "inline" }}>
-                  Education
-                </h6>
-                {!state && (
-                  <FontAwesomeIcon
-                    icon={faSquarePlus}
-                    style={{
-                      color: "#51B9CA",
-                      marginLeft: "6px",
-                      cursor: "pointer",
-                    }}
-                    onClick={toggle}
-                  />
-                )}
-                {educations.map((education) => {
-                  return (
-                    <Education
-                      key={education.id}
-                      education={education}
-                      onEducationSave={onEducationSave}
-                    ></Education>
-                  );
-                })}
-
-                <div>
-                  <Expand open={state}>
-                    <EducationForm onSave={onEducationAdd} toggle={toggle} />
-                  </Expand>
-                </div>
-              </div>
+              <Education
+                educations={educations}
+                onEducationAdd={onEducationAdd}
+                onEducationEdit={onEducationEdit}
+              />
             </div>
             <div className="row">
               <Skill
                 skills={skills}
                 onSkillAdd={onSkillAdd}
                 onSkillEdit={onSkillEdit}
+              />
+            </div>
+            <div className="row">
+              <Reference
+                references={references}
+                onReferenceAdd={onReferenceAdd}
+                onReferenceEdit={onReferenceEdit}
               />
             </div>
           </div>
@@ -126,6 +109,7 @@ function App() {
               links={links}
               educations={educations}
               skills={skills}
+              references={references}
             />
           </div>
         </div>
