@@ -9,7 +9,7 @@ import EducationForm from "./component/EducationForm";
 import Resume from "./component/Resume";
 import Link from "./component/Link";
 
-library.add(fab);
+// library.add(fab);
 
 let nextId = 1;
 function App() {
