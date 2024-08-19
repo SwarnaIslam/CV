@@ -6,10 +6,20 @@ import {
   faMobile,
   faEnvelope,
   faLink,
+  faArrowUpRightFromSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DOMPurify from "dompurify";
 library.add(fab, faLink);
-const Resume = ({ generalInfo, links, educations, skills, references }) => {
+const Resume = ({
+  generalInfo,
+  links,
+  educations,
+  skills,
+  references,
+  projects,
+  experiences,
+}) => {
   return (
     <div className="resume">
       <div
@@ -109,6 +119,41 @@ const Resume = ({ generalInfo, links, educations, skills, references }) => {
             </ul>
           </div>
         )}
+        {projects.length > 0 && (
+          <div className="row">
+            <h6 className="m-0">Project</h6>
+            <hr style={{ width: "95%", margin: "auto" }} />
+            <ul style={{ marginLeft: "10px", listStyle: "none" }}>
+              {projects.map((project) => {
+                let newLink = project.link;
+                if (
+                  !newLink.startsWith("http://") &&
+                  !newLink.startsWith("https://")
+                ) {
+                  newLink = "http://" + newLink;
+                }
+                return (
+                  <li key={project.id}>
+                    <span className="list-header" style={{ margin: "0" }}>
+                      {project.title}
+                    </span>
+                    {", "}
+                    <span className="list-explain">
+                      {project.subTitle}
+                      <a href={newLink} style={{ textDecoration: "none" }}>
+                        <FontAwesomeIcon
+                          icon={faArrowUpRightFromSquare}
+                          style={{ width: "10px", marginLeft: "5px" }}
+                        />
+                      </a>
+                    </span>
+                    <p className="list-explain">{project.description}</p>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
         {references.length > 0 && (
           <div className="row">
             <h6 className="m-0">Reference</h6>
@@ -124,6 +169,30 @@ const Resume = ({ generalInfo, links, educations, skills, references }) => {
                     <span className="list-explain">{reference.title}</span>
                     <p className="list-explain">{reference.phone}</p>
                     <p className="list-explain">{reference.email}</p>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+        {experiences.length > 0 && (
+          <div className="row">
+            <h6 className="m-0">Work Experience</h6>
+            <hr style={{ width: "95%", margin: "auto" }} />
+            <ul style={{ marginLeft: "10px", listStyle: "none" }}>
+              {experiences.map((experience) => {
+                const safeContent = DOMPurify.sanitize(experience.info);
+                return (
+                  <li key={experience.id}>
+                    <span className="list-header" style={{ margin: "0" }}>
+                      {experience.employer}
+                    </span>
+                    {", "}
+                    <span className="list-explain">{experience.title}</span>
+                    <div
+                      className="custom-text"
+                      dangerouslySetInnerHTML={{ __html: safeContent }} // Render the sanitized HTML
+                    />
                   </li>
                 );
               })}
