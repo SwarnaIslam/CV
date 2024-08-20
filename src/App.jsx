@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useRef } from "react";
 import GeneralInfo from "./component/generalInfo";
 import Education from "./component/Education";
