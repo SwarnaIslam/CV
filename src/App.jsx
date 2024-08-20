@@ -19,9 +19,9 @@ function App() {
     content: () => componentRef.current,
   });
   const [general, setGeneral] = useState({
-    name: "",
-    email: "",
-    phone: "",
+    name: "Raisa Islam",
+    email: "raisaislam@gmail.com",
+    phone: "017xxxxxxxx",
   });
 
   const [links, setLinks] = useState([
@@ -36,11 +36,11 @@ function App() {
   const [references, setReferences] = useState([
     {
       id: 0,
-      name: "Muhammad Khabir Uddin",
+      name: "John Doe",
       title: "Development Manager",
-      organization: "Stream Tech Ltd.",
+      organization: "Unknown Company",
       phone: "",
-      email: "khabir.uddin@streamstech.com",
+      email: "johndoe@unknowncompany.com",
     },
   ]);
   const [projects, setProjects] = useState([
@@ -57,7 +57,7 @@ function App() {
     {
       id: 0,
       title: "Intern",
-      employer: "Streams Tech Ltd.",
+      employer: "Unknown company",
       start: "2024-02",
       end: "2024-06",
       info: "",
