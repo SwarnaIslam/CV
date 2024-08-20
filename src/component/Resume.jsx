@@ -10,7 +10,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DOMPurify from "dompurify";
+
 library.add(fab, faLink);
+
 const Resume = ({
   generalInfo,
   links,
@@ -19,12 +21,13 @@ const Resume = ({
   references,
   projects,
   experiences,
+  refer,
 }) => {
   return (
-    <div className="resume">
+    <div className="resume" ref={refer}>
       <div
         className="container"
-        style={{ padding: "40px", wordWrap: "break-word" }}
+        style={{ padding: "1.5rem", wordWrap: "break-word" }} // 40px = 2.5rem
       >
         <div
           className="row text-center"
@@ -33,9 +36,9 @@ const Resume = ({
           <h2 className="m-0">
             <b>{generalInfo.name || "Your Name"}</b>
           </h2>
-          <div className="d-flex justify-content-center general-info flex-col flex-wrap  m-0">
+          <div className="d-flex justify-content-center general-info flex-col flex-wrap m-0">
             {generalInfo.phone && (
-              <p className="me-2 ">
+              <p className="me-2">
                 <FontAwesomeIcon icon={faMobile} /> {generalInfo.phone}
               </p>
             )}
@@ -82,7 +85,7 @@ const Resume = ({
 
             <ul
               style={{
-                marginLeft: "10px",
+                marginLeft: "0.625rem", // 10px = 0.625rem
                 listStyle: "none",
               }}
             >
@@ -92,9 +95,10 @@ const Resume = ({
                     <p className="list-header">{education.name}</p>
                     <p className="list-explain">
                       {education.degree}
-                      {(education.start != "" || education.end != "") && " | "}
-                      {education.start != "" &&
-                        education.end != "" &&
+                      {(education.start !== "" || education.end !== "") &&
+                        " | "}
+                      {education.start !== "" &&
+                        education.end !== "" &&
                         `${education.start} - ${education.end}`}
                     </p>
                   </li>
@@ -107,7 +111,7 @@ const Resume = ({
           <div className="row">
             <h6 className="m-0">Skills</h6>
             <hr style={{ width: "95%", margin: "auto" }} />
-            <ul style={{ marginLeft: "10px", listStyle: "none" }}>
+            <ul style={{ marginLeft: "0.625rem", listStyle: "none" }}>
               {skills.map((skill) => {
                 return (
                   <li key={skill.id}>
@@ -123,7 +127,7 @@ const Resume = ({
           <div className="row">
             <h6 className="m-0">Project</h6>
             <hr style={{ width: "95%", margin: "auto" }} />
-            <ul style={{ marginLeft: "10px", listStyle: "none" }}>
+            <ul style={{ marginLeft: "0.625rem", listStyle: "none" }}>
               {projects.map((project) => {
                 let newLink = project.link;
                 if (
@@ -143,7 +147,7 @@ const Resume = ({
                       <a href={newLink} style={{ textDecoration: "none" }}>
                         <FontAwesomeIcon
                           icon={faArrowUpRightFromSquare}
-                          style={{ width: "10px", marginLeft: "5px" }}
+                          style={{ width: "0.625rem", marginLeft: "0.3125rem" }} // 10px = 0.625rem, 5px = 0.3125rem
                         />
                       </a>
                     </span>
@@ -154,32 +158,12 @@ const Resume = ({
             </ul>
           </div>
         )}
-        {references.length > 0 && (
-          <div className="row">
-            <h6 className="m-0">Reference</h6>
-            <hr style={{ width: "95%", margin: "auto" }} />
-            <ul style={{ marginLeft: "10px", listStyle: "none" }}>
-              {references.map((reference) => {
-                return (
-                  <li key={reference.id}>
-                    <span className="list-header" style={{ margin: "0" }}>
-                      {reference.name}
-                    </span>
-                    {", "}
-                    <span className="list-explain">{reference.title}</span>
-                    <p className="list-explain">{reference.phone}</p>
-                    <p className="list-explain">{reference.email}</p>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        )}
+
         {experiences.length > 0 && (
           <div className="row">
             <h6 className="m-0">Work Experience</h6>
             <hr style={{ width: "95%", margin: "auto" }} />
-            <ul style={{ marginLeft: "10px", listStyle: "none" }}>
+            <ul style={{ marginLeft: "0.625rem", listStyle: "none" }}>
               {experiences.map((experience) => {
                 const safeContent = DOMPurify.sanitize(experience.info);
                 return (
@@ -193,6 +177,27 @@ const Resume = ({
                       className="custom-text"
                       dangerouslySetInnerHTML={{ __html: safeContent }} // Render the sanitized HTML
                     />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+        {references.length > 0 && (
+          <div className="row">
+            <h6 className="m-0">Reference</h6>
+            <hr style={{ width: "95%", margin: "auto" }} />
+            <ul style={{ marginLeft: "0.625rem", listStyle: "none" }}>
+              {references.map((reference) => {
+                return (
+                  <li key={reference.id}>
+                    <span className="list-header" style={{ margin: "0" }}>
+                      {reference.name}
+                    </span>
+                    {", "}
+                    <span className="list-explain">{reference.title}</span>
+                    <p className="list-explain">{reference.phone}</p>
+                    <p className="list-explain">{reference.email}</p>
                   </li>
                 );
               })}

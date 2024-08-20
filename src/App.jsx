@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import GeneralInfo from "./component/generalInfo";
 import Education from "./component/Education";
 import Resume from "./component/Resume";
@@ -7,8 +7,17 @@ import Skill from "./component/Skill";
 import Reference from "./component/Reference";
 import Project from "./component/Project";
 import Experience from "./component/Experience";
-
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { usePDF } from "react-to-pdf";
+import { useReactToPrint } from "react-to-print";
+import "./App.css";
 function App() {
+  // const { toPDF, targetRef } = usePDF({ filename: "page.pdf" });
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
   const [general, setGeneral] = useState({
     name: "",
     email: "",
@@ -129,9 +138,12 @@ function App() {
   }
   return (
     <>
-      <div className="container">
+      <div
+        className="container"
+        style={{ position: "absolute", top: "20px", left: "20px" }}
+      >
         <div className="row">
-          <div className="col-sm-5">
+          <div className="col-sm-6">
             <div className="row">
               <GeneralInfo
                 person={general}
@@ -177,7 +189,17 @@ function App() {
               />
             </div>
           </div>
-          <div className="col-sm-7">
+
+          <div className="col-sm-6 ">
+            <div style={{ position: "absolute", top: "20px", right: "0px" }}>
+              <button
+                type="button"
+                className="btn btn-outline-info"
+                onClick={handlePrint}
+              >
+                <FontAwesomeIcon icon={faDownload} />
+              </button>
+            </div>
             <Resume
               generalInfo={general}
               links={links}
@@ -186,6 +208,7 @@ function App() {
               references={references}
               projects={projects}
               experiences={experiences}
+              refer={componentRef}
             />
           </div>
         </div>

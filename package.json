@@ -29,6 +29,7 @@
     "react-draft-wysiwyg-a": "^1.14.5-1",
     "react-expand-animated": "^1.0.2",
     "react-quill": "^2.0.0",
+    "react-to-pdf": "^1.0.1",
     "react-to-print": "^2.15.1",
     "react-transition-group": "^4.4.5"
   },

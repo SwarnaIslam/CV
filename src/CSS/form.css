@@ -1,6 +1,7 @@
 .form {
   overflow-wrap: break-word;
   margin-top: 10px;
+  margin-left: 0px !important;
   width: 100vw;
   padding: 15px;
   /* height: 100vh; */
@@ -14,6 +15,7 @@
 }
 
 .inputBox {
+  margin-left: 0px !important;
   background-color: #f3f4f6;
   border-style: none;
   border-radius: 0px;
@@ -23,6 +25,7 @@
 
 .form-group {
   margin-top: 10px;
+  margin-left: 0px !important;
 }
 
 .font-label {
@@ -41,6 +44,7 @@
   font-weight: 400;
   font-size: 12px;
   margin: 0;
+  margin-left: 0px !important;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 

@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+}
+
+@page {
+    size: Letter portrait;
+    /* Sets the paper size to 'Letter' */
+    margin: 0;
+    /* Removes default margins */
+}
+
+@media print {
+    body * {
+        visibility: visible;
+    }
+
+
+
+
+
+    .resume {
+        background-color: white;
+        /* Ensure the background is white */
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        /* Adjust padding as needed */
+        box-shadow: none;
+    }
+
+    body {
+        background: none;
+        /* Remove any background from the body */
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+}
