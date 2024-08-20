@@ -168,13 +168,6 @@ function App() {
               />
             </div>
             <div className="row">
-              <Reference
-                references={references}
-                onReferenceAdd={onReferenceAdd}
-                onReferenceEdit={onReferenceEdit}
-              />
-            </div>
-            <div className="row">
               <Project
                 projects={projects}
                 onProjectAdd={onProjectAdd}
@@ -186,6 +179,13 @@ function App() {
                 experiences={experiences}
                 onExperienceAdd={onExperienceAdd}
                 onExperienceEdit={onExperienceEdit}
+              />
+            </div>
+            <div className="row">
+              <Reference
+                references={references}
+                onReferenceAdd={onReferenceAdd}
+                onReferenceEdit={onReferenceEdit}
               />
             </div>
           </div>
