@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useRef } from "react";
-import GeneralInfo from "./component/generalInfo";
+import GeneralInfo from "./component/GeneralInfo";
 import Education from "./component/Education";
 import Resume from "./component/Resume";
 import Link from "./component/Link";
